@@ -85,16 +85,12 @@ func main() {
 		w.Write([]byte("OK"))
 	})
 
-	// Serve static files for web UI
+	// Serve static files for web UI (must be before root handler)
 	fs := http.FileServer(http.Dir("web/static"))
 	mux.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	// Serve index.html for root path
-	mux.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/" {
-			http.NotFound(w, r)
-			return
-		}
+	// Serve index.html for root path (catch-all for unmatched routes)
+	mux.HandleFunc("GET /{$}", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "web/static/index.html")
 	})
 
