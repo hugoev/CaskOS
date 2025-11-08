@@ -1,6 +1,6 @@
 # CaskOS - Mini Object Storage System
 
-CaskOS is a production-quality, distributed object storage system written in Go, inspired by Amazon S3 and Ceph RGW. It provides object storage with replication, consistent hashing, and self-healing capabilities.
+CaskOS is a production-quality, distributed object storage system written in Go. It provides object storage with replication, consistent hashing, and self-healing capabilities.
 
 ## Features
 
