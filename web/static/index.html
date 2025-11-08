@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaskOS - Object Storage</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🗄️ CaskOS</h1>
+            <p class="subtitle">Mini S3-style Object Storage System</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <h2>Upload File</h2>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="file-input-wrapper">
+                        <input type="file" id="fileInput" name="file" required>
+                        <label for="fileInput" class="file-label">
+                            <span class="file-label-text">Choose a file...</span>
+                            <span class="file-label-button">Browse</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="upload-button" id="uploadButton">
+                        <span>Upload</span>
+                    </button>
+                </form>
+            </div>
+
+            <div id="uploadResult" class="result-section hidden"></div>
+
+            <div class="info-section">
+                <h3>How to use</h3>
+                <ul>
+                    <li>Select a file using the browse button</li>
+                    <li>Click "Upload" to store the file</li>
+                    <li>Copy the Object ID to retrieve the file later</li>
+                    <li>Use the API endpoints for programmatic access</li>
+                </ul>
+                <div class="api-info">
+                    <h4>API Endpoints</h4>
+                    <code>POST /upload</code> - Upload a file<br>
+                    <code>GET /object/{id}</code> - Download a file<br>
+                    <code>GET /metadata/{id}</code> - Get file metadata
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
+

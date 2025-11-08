@@ -10,6 +10,7 @@ CaskOS is a production-quality, distributed object storage system written in Go,
 - **Self-Healing**: Automatic detection and repair of missing replicas
 - **Metadata Management**: JSON-based metadata store for object information
 - **RESTful API**: Simple HTTP API for upload, download, and metadata operations
+- **Web UI**: Simple, modern web interface for file uploads
 - **Docker Support**: Ready-to-run containerized deployment
 
 ## Architecture
@@ -121,6 +122,8 @@ go build -o caskos ./cmd/caskos
          -virtual-nodes 150
 ```
 
+Once the server is running, open your browser to `http://localhost:8080` to access the web UI.
+
 **Command-line flags:**
 - `-port`: HTTP server port (default: 8080)
 - `-data-dir`: Base directory for storage nodes (default: ./data)
@@ -143,6 +146,17 @@ docker-compose down
 ```
 
 The service will be available at `http://localhost:8080`.
+
+## Web UI
+
+CaskOS includes a simple, modern web interface for uploading files. Simply navigate to `http://localhost:8080` in your browser after starting the server.
+
+**Features:**
+- Drag-and-drop file selection
+- Real-time upload progress
+- Display of object ID, metadata, and download links
+- Copy-to-clipboard for object IDs
+- Direct links to download files and view metadata
 
 ## API Usage
 
@@ -200,10 +214,12 @@ Returns `OK` if the service is healthy.
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
+| GET | `/` | Web UI (HTML interface) |
 | POST | `/upload` | Upload a file (multipart/form-data) |
 | GET | `/object/{id}` | Download an object by ID |
 | GET | `/metadata/{id}` | Get object metadata |
 | GET | `/health` | Health check |
+| GET | `/static/*` | Static files (CSS, JS) |
 
 ## Self-Healing
 
@@ -243,14 +259,19 @@ CaskOS/
 │   │   └── server.go            # HTTP API server
 │   ├── storage/
 │   │   ├── node.go              # Storage node implementation
-│   │   └── manager.go           # Storage manager with replication
+│   │   └── manager.go          # Storage manager with replication
 │   ├── metadata/
 │   │   └── store.go             # Metadata store (JSON-based)
 │   └── hashring/
 │       └── hashring.go          # Consistent hashing implementation
+├── web/
+│   └── static/
+│       ├── index.html           # Web UI HTML
+│       ├── style.css            # Web UI styles
+│       └── app.js               # Web UI JavaScript
 ├── test/
-│   └── integration_test.go      # Integration tests
-├── Dockerfile                    # Docker build file
+│   └── integration_test.go       # Integration tests
+├── Dockerfile                   # Docker build file
 ├── docker-compose.yml           # Docker Compose configuration
 ├── go.mod                       # Go module definition
 └── README.md                    # This file
@@ -290,18 +311,18 @@ CaskOS/
 - Single-node deployment (all storage nodes on one machine)
 - No authentication/authorization
 - No object versioning
-- No web UI (API-only)
 
 ### Potential Enhancements
 
 - [ ] Multi-machine distributed deployment
 - [ ] Basic authentication with API keys
 - [ ] Object versioning support
-- [ ] Web UI for file uploads
+- [x] Web UI for file uploads
 - [ ] Streaming replication for large files
 - [ ] Metrics and monitoring endpoints
 - [ ] Object expiration/TTL
 - [ ] Range requests for partial downloads
+- [ ] File browser/list view in web UI
 
 ## License
 
