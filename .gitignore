@@ -1,4 +1,4 @@
-# Binaries
+# Binaries for programs and plugins
 *.exe
 *.exe~
 *.dll
@@ -11,16 +11,23 @@ caskos
 
 # Output of the go coverage tool
 *.out
+coverage.*
+*.coverprofile
+profile.cov
 
 # Dependency directories
 vendor/
 
 # Go workspace file
 go.work
+go.work.sum
 
 # Data directories
 data/
 metadata/
+
+# env file
+.env
 
 # IDE
 .idea/
@@ -32,4 +39,3 @@ metadata/
 # OS
 .DS_Store
 Thumbs.db
-
