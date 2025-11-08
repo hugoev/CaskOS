@@ -79,6 +79,7 @@ CaskOS uses consistent hashing to distribute objects across storage nodes:
 - The hash ring ensures even distribution and efficient lookup
 
 **How it works:**
+
 1. Object ID is hashed to a position on the ring
 2. The system finds the first node clockwise from that position
 3. For replication, it selects N distinct nodes following the ring
@@ -125,6 +126,7 @@ go build -o caskos ./cmd/caskos
 Once the server is running, open your browser to `http://localhost:8080` to access the web UI.
 
 **Command-line flags:**
+
 - `-port`: HTTP server port (default: 8080)
 - `-data-dir`: Base directory for storage nodes (default: ./data)
 - `-metadata-dir`: Directory for metadata storage (default: ./metadata)
@@ -152,6 +154,7 @@ The service will be available at `http://localhost:8080`.
 CaskOS includes a simple, modern web interface for uploading files. Simply navigate to `http://localhost:8080` in your browser after starting the server.
 
 **Features:**
+
 - Drag-and-drop file selection
 - Real-time upload progress
 - Display of object ID, metadata, and download links
@@ -169,6 +172,7 @@ curl -X POST http://localhost:8080/upload \
 ```
 
 **Response:**
+
 ```json
 {
   "id": "a1b2c3d4e5f6...",
@@ -192,6 +196,7 @@ curl http://localhost:8080/metadata/{object-id}
 ```
 
 **Response:**
+
 ```json
 {
   "id": "a1b2c3d4e5f6...",
@@ -212,14 +217,14 @@ Returns `OK` if the service is healthy.
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/` | Web UI (HTML interface) |
-| POST | `/upload` | Upload a file (multipart/form-data) |
-| GET | `/object/{id}` | Download an object by ID |
-| GET | `/metadata/{id}` | Get object metadata |
-| GET | `/health` | Health check |
-| GET | `/static/*` | Static files (CSS, JS) |
+| Method | Endpoint         | Description                         |
+| ------ | ---------------- | ----------------------------------- |
+| GET    | `/`              | Web UI (HTML interface)             |
+| POST   | `/upload`        | Upload a file (multipart/form-data) |
+| GET    | `/object/{id}`   | Download an object by ID            |
+| GET    | `/metadata/{id}` | Get object metadata                 |
+| GET    | `/health`        | Health check                        |
+| GET    | `/static/*`      | Static files (CSS, JS)              |
 
 ## Self-Healing
 
@@ -331,6 +336,7 @@ This project is provided as-is for educational and development purposes.
 ## Contributing
 
 Contributions are welcome! Please ensure:
+
 - Code follows Go best practices
 - Tests are included for new features
 - Documentation is updated
@@ -338,8 +344,8 @@ Contributions are welcome! Please ensure:
 ## Author
 
 Built as a production-quality distributed systems project demonstrating:
+
 - Consistent hashing
 - Replication strategies
 - Self-healing systems
 - Clean Go architecture
-
